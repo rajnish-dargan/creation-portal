@@ -5,6 +5,9 @@ import { ProgramComponent } from './components';
 import { ProgramListComponent } from '../shared-feature/components/program-list/program-list.component';
 import { OrgUserListComponent } from './components/org-user-list/org-user-list.component';
 import { HelpPageComponent } from '../shared-feature/components/help-page/help-page.component';
+import { MyContentComponent } from './components/my-content/my-content.component';
+import { ContentListComponent } from './components/content-list/content-list.component';
+import { ContentPreviewComponent } from './components/content-preview/content-preview.component';
 
 const routes: Routes = [
 {
@@ -44,6 +47,15 @@ const routes: Routes = [
   data: {
     telemetry: { env: 'creation-portal', type: 'view', subtype: 'paginate', pageid: 'help-page' }
   },
+},
+{
+  path: 'mycontent', component: MyContentComponent, pathMatch: 'full',
+},
+{
+  path: 'contentlist', component: ContentListComponent, pathMatch: 'full',
+},
+{
+  path: 'contentpreview', component: ContentPreviewComponent, pathMatch: 'full',
 }
 ];
 

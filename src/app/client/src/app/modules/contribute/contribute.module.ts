@@ -17,13 +17,21 @@ import { CollectionComponent, DashboardComponent } from '../cbse-program';
 import { CommonConsumptionModule} from '@project-sunbird/common-consumption';
 import { OrgUserListComponent } from './components/org-user-list/org-user-list.component';
 import { SharedFeatureModule } from '../shared-feature/shared-feature.module';
+import { MyContentComponent } from './components/my-content/my-content.component';
+import { ContentListComponent } from  './components/content-list/content-list.component';
+import { ContentPreviewComponent} from './components/content-preview/content-preview.component';
+import { PlayerHelperModule} from '../../modules/player-helper/player-helper.module';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
     ProgramComponent,
     OnboardPopupComponent,
     ProgramHeaderComponent,
-    OrgUserListComponent],
+    OrgUserListComponent,
+    MyContentComponent,
+    ContentListComponent,
+    ContentPreviewComponent],
   imports: [
     SuiModule,
     CommonModule,
@@ -38,6 +46,8 @@ import { SharedFeatureModule } from '../shared-feature/shared-feature.module';
     TelemetryModule,
     CbseProgramModule,
     SharedFeatureModule,
+    PlayerHelperModule,
+    HttpClientModule,
     DynamicModule.withComponents([CollectionComponent, DashboardComponent])
   ],
   exports: [

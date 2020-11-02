@@ -1,0 +1,83 @@
+<!-- <div *ngIf="showLoader">
+  <app-loader></app-loader>
+</div> -->
+<div class="sb-bg-color-gray-0">
+  <div class="ui container py-10">
+    <button class="sb-btn sb-btn-normal sb-btn-link sb-btn-link-primary sb-left-icon-btn" (click)="handleBack()"
+      type="button">
+        <i class="icon-svg icon-svg--xxs icon-back mr-4">
+            <svg class="icon icon-svg--primary">
+                <use xlink:href="assets/images/sprite.svg#arrow-long-left"></use>
+            </svg>
+        </i>
+        Back
+    </button>
+    <div class="d-flex">
+      <div class="d-flex flex-ai-center flex-jc-space-between practical-header__content w-100">
+        <div class="fs-1">
+          <div class="mt-8 practice-set__status">
+            <span class="sb-label sb-label-table sb-color-success" *ngIf="contentpublished">Published on DIKSHA</span>
+            <span class="sb-label sb-label-table sb-color-error" *ngIf="!contentpublished">Not Published on DIKSHA</span>
+            <!-- <a id="viewContentOnDiksha" *ngIf="sourcingReviewStatus === 'Approved' && originPreviewUrl && originPreviewReady" class="sb-color-primary mr-8 pl-10 fs-0-785 font-weight-bold"
+            href="{{originPreviewUrl}}" target="_blank">{{resourceService.frmelmnts.btn.viewContentOnDiksha}}</a> -->
+            <span *ngIf="(contentpublished && originPreviewUrl !== '')">
+              <a href="{{originPreviewUrl}}" target="_blank" class="fs-0-785 ml-10">{{resourceService.frmelmnts.btn.viewContentOnDiksha}}</a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="middle-section-set" *ngIf="!showLoader">
+  <div class="ui container msg-box">
+    <div class="msg-box__content">
+      <div class="container msg-box__content__blank-box">
+        <app-player [playerConfig]="playerConfig"></app-player>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="middle-section-set">
+  <div class="ui stackable grid licence-form__content__fields my-0">
+    <div class="row">
+        <div class="sb-field mb-16 six wide column">
+            <div class="width-100">
+                <label class="font-weight-bold fsmall">{{ resourceService.frmelmnts.lbl.copyrightAndYear }}</label>
+                <div *ngIf="ShowCopyright"><span class="sb-color-gray-200 fs-0-785">{{contentData.copyright}}</span></div>
+            </div>
+        </div>
+        <div class="sb-field mb-16 six wide column">
+          <div class="width-100">
+              <label class="font-weight-bold fsmall">{{resourceService.frmelmnts.lbl.attributions}}:</label>
+              <div><span class="sb-color-gray-200 fs-0-785">{{contentData['attributions']?.join(", ") || ''}}</span></div>
+          </div>
+      </div>
+      <div class="sb-field mb-16 six wide column">
+        <div class="width-100">
+            <label class="font-weight-bold fsmall">{{resourceService.frmelmnts.lbl.license}}:</label>
+            <div *ngIf="showLicense"><span class="sb-color-gray-200 fs-0-785">{{contentData.license}}</span></div>
+        </div>
+      </div>
+      <div class="sb-field mb-16 six wide column">
+        <div class="width-100">
+           <label class="font-weight-bold fsmall">{{resourceService.frmelmnts.lbl.author}}:</label>
+           <div *ngIf="showAuthor"><span class="sb-color-gray-200 fs-0-785">{{contentData.author}}</span></div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<label class="fs-0-785 sb-color-gray-400 font-italic">
+  <span class="sb-color-red pr-3">*</span>
+  “I agree that by submitting / publishing this Content,
+  I confirm that this Content complies with prescribed guidelines,
+  including the Terms of Use and Content Policy and that I consent
+  to publish it under the <a class="link font-weight-bold"  href="https://creativecommons.org/licenses" target="_blank">
+  Creative Commons Framework in </a>
+  accordance with the  <a class="link font-weight-bold"  href="/terms-of-use.html" target="_blank">
+  Content Policy.</a> I have made sure that I do not violate others’ copyright or privacy rights.”
+</label>
+</div>

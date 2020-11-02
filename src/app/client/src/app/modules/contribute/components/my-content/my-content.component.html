@@ -1,0 +1,107 @@
+     <div class="text-capitalize fs-0-785 line-height-1-3 sb-pageSection-document py-5 grid mt-10 ui container" *ngIf="!showLoader">
+        <div class="d-flex chapterlist-header pt-24 w-100 flex-jc-space-between px-0 flex-jc-space-between">
+            <div class="d-flex">
+              <div class="textbook-details ml-8">
+                <label class="d-block fs-1-3">{{resourceService.frmelmnts.lbl.myContent}}</label>
+                <div class="d-flex flex-ai-center pt-30">
+                    <div class="sb-color-primary d-inline-block pr-10 br-2"><span class="fs-1-286 font-weight-bold pr-10">{{contentDetails.length}}</span>{{resourceService.frmelmnts.lbl.totalContributed}}</div>
+                    <!-- <div class="sb-color-success d-inline-block px-10 br-2"><span class="fs-1-286 font-weight-bold pr-10">2</span>{{resourceService.frmelmnts.lbl.publishedOnDIKSHA}}</div>
+                    <div class="sb-color-error d-inline-block px-10"><span class="fs-1-286 font-weight-bold pr-10">5</span>{{resourceService.frmelmnts.lbl.notPublishedOnDIKSHA }}</div> -->
+                 </div>
+              </div>
+            </div>
+    
+            <!-- <div class="sb-meta-data-container sb-meta-data-column d-flex flex-w-wrap ml-16 width-inherit flex-dc">
+              <label class="d-block width-100 pb-5">{{resourceService.frmelmnts.lbl.usageDetails}}</label>
+              <div class="d-flex">
+                <dl
+                  class="pr-10">
+                  <dt class="fs-1-3 pb-10">2,45,000</dt>
+                  <dd>{{resourceService.frmelmnts.lbl.totalViews}}</dd>
+                </dl>
+                <dl
+                  class="px-10">
+                  <dt class="fs-1-3 pb-10">1250</dt>
+                  <dd>{{resourceService.frmelmnts.lbl.averageViewsPerCount}}</dd>
+                </dl>
+                <dl 
+                  class="px-10">
+                  <dt class="fs-1 pb-10"><i class="icon star sb-color-warning"></i>4</dt>
+                  <dd>{{resourceService.frmelmnts.lbl.averageRating }}</dd>
+                </dl>
+              </div>
+            </div> -->
+          </div>
+        
+    </div>
+    <div class="sb-pageSection sb-bg-color-white my-24 pb-24">
+        <div class="ui container">
+            <div class="d-flex flex-ai-center flex-jc-space-between" *ngIf="!showLoader">
+                <div class="sb-pageSection-header mb-0 py-24">
+                    <h4 class="sb-pageSection-title">
+                        <span>{{resourceService.frmelmnts.lbl.myContent}}</span>
+                    </h4>
+                    <span class="sb-pagSection-count sb-label sb-label-x sb-label-warning">{{contentDetails.length}}</span>
+                </div>
+            </div>
+            <div class="sb-pageSection-content" *ngIf="!showLoader">
+                <div class="sb-table-responsive">
+                    <table class="sb-table sb-table-striped sb-table-sortable">
+                        <thead class="sb-table-header sb-table-thead-gray">
+                            <tr>
+                                <th class="cursor-pointer sb-sorting">{{resourceService.frmelmnts.lbl.board}} &nbsp;&nbsp;
+                                    <i class="fa fa-sort" aria-hidden="true"></i>
+                                </th>
+                                <th class="cursor-pointer sb-sorting">{{resourceService.frmelmnts.lbl.medium}} &nbsp;&nbsp;
+                                    <i class="fa fa-sort" aria-hidden="true"></i>
+                                </th>
+                                <th class="cursor-pointer sb-sorting">{{resourceService.frmelmnts.lbl.class}} &nbsp;&nbsp;
+                                    <i class="fa fa-sort" aria-hidden="true"></i>
+                                </th>
+                                <th class="cursor-pointer sb-sorting">{{resourceService.frmelmnts.lbl.subject}} &nbsp;&nbsp;
+                                    <i class="fa fa-sort" aria-hidden="true"></i>
+                                </th>
+                                <th>{{resourceService.frmelmnts.lbl.contenttype}}</th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody class="sb-table-body w-100 o-y-auto max-height">
+                            <tr *ngFor = "let row of contentDetails">
+                                <td>
+                                    <div class="sb-color-primary font-weight-bold">
+                                        {{row['event'].board}}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        {{row['event'].medium}}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        {{row['event'].gradeLevel}}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        {{row['event'].subject}}
+                                    </div>
+                                </td>
+                                <td class="fsmall">
+                                    <div class="text-capitalize fs-0-785">
+                                        <span class="sb-color-primary d-inline-block br-2 pr-5">{{resourceService.frmelmnts.lbl.total}} : {{row['event'].publishedCount}}  </span>
+                                        <!-- <span class="sb-color-success d-inline-block br-2 px-5">{{resourceService.frmelmnts.lbl.published}} : {{row['published']}}</span>
+                                        <span class="sb-color-error d-inline-block px-5">{{resourceService.frmelmnts.lbl.Notpublished}} : {{row['not_published']}} </span> -->
+                                    </div>
+                                </td>
+                                <td class="text-center"><button type="button"  class="sb-btn sb-btn-normal sb-btn-outline-primary" (click)="viewDetailsBtnClicked(row['event'].board, row['event'].medium, row['event'].gradeLevel, row['event'].subject)">{{resourceService.frmelmnts.btn.open}}</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="ui tweleve wide column mb-20" *ngIf="showLoader">
+                <app-loader></app-loader>
+            </div>
+        </div>
+    </div> 
