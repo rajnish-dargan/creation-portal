@@ -5,9 +5,11 @@ import { ProgramComponent } from './components';
 import { ProgramListComponent } from '../shared-feature/components/program-list/program-list.component';
 import { OrgUserListComponent } from './components/org-user-list/org-user-list.component';
 import { HelpPageComponent } from '../shared-feature/components/help-page/help-page.component';
+import * as telemetryLabels from '../shared/services/config/telemetry-label.config.json';
 import { MyContentComponent } from './components/my-content/my-content.component';
 import { ContentListComponent } from './components/content-list/content-list.component';
 import { ContentPreviewComponent } from './components/content-preview/content-preview.component';
+const telemetryPage = telemetryLabels.default;
 
 const routes: Routes = [
 {
@@ -20,32 +22,37 @@ const routes: Routes = [
   path: '', component: ProgramListComponent, canActivate: [ProgramsService],
   data: {
     telemetry: {
-      env: 'creation-portal', pageid: 'list-all-programs', type: 'list', subtype: 'paginate'
+      env: 'creation-portal', pageid: telemetryPage.pageId.contribute.allProjects, type: telemetryPage.pageType.list,
+      subtype: telemetryPage.pageSubtype.paginate
     }
   }
 },
 {
   path: 'myenrollprograms', component: ProgramListComponent, pathMatch: 'full',
   data: {
-    telemetry: { env: 'creation-portal', type: 'list', subtype: 'paginate', pageid: 'list-my-programs' }
+    telemetry: { env: 'creation-portal', pageid: telemetryPage.pageId.contribute.adminMyProjects, type: telemetryPage.pageType.list,
+    subtype: telemetryPage.pageSubtype.paginate}
   },
 },
 {
   path: 'program/:programId', component: ProgramComponent,
   data: {
-    telemetry: { env: 'creation-portal', type: 'view', subtype: 'paginate', pageid: 'program' }
+    telemetry: { env: 'creation-portal', pageid: telemetryPage.pageId.contribute.projectContributions, type: telemetryPage.pageType.list,
+    subtype: telemetryPage.pageSubtype.paginate}
   },
 },
 {
   path: 'orglist', component: OrgUserListComponent, pathMatch: 'full',
   data: {
-    telemetry: { env: 'creation-portal', type: 'view', subtype: 'paginate', pageid: 'list-org-users' }
+    telemetry: { env: 'creation-portal', pageid: telemetryPage.pageId.contribute.manageUsers, type: telemetryPage.pageType.list,
+    subtype: telemetryPage.pageSubtype.paginate }
   },
 },
 {
   path: 'help', component: HelpPageComponent, pathMatch: 'full',
   data: {
-    telemetry: { env: 'creation-portal', type: 'view', subtype: 'paginate', pageid: 'help-page' }
+    telemetry: { env: 'creation-portal', pageid: telemetryPage.pageId.contribute.help, type: telemetryPage.pageType.documentation,
+    subtype: telemetryPage.pageSubtype.paginate }
   },
 },
 {

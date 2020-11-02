@@ -12,7 +12,8 @@
     "code",
     "contentEncoding",
     "contentDisposition",
-    "mediaType"
+    "mediaType",
+    "primaryCategory"
   ],
   "properties": {
     "name": {
@@ -52,48 +53,12 @@
     "mimeType": {
       "type": "string",
       "enum": [
-        "application/vnd.ekstep.ecml-archive",
-        "application/vnd.ekstep.html-archive",
-        "application/vnd.android.package-archive",
-        "application/vnd.ekstep.content-archive",
-        "application/vnd.ekstep.content-collection",
-        "application/vnd.ekstep.plugin-archive",
-        "application/vnd.ekstep.h5p-archive",
-        "application/epub",
-        "text/x-url",
-        "video/x-youtube",
-        "application/octet-stream",
-        "application/msword",
-        "application/pdf",
-        "image/jpeg",
-        "image/jpg",
-        "image/png",
-        "image/tiff",
-        "image/bmp",
-        "image/gif",
-        "image/svg+xml",
-        "video/avi",
-        "video/mpeg",
-        "video/quicktime",
-        "video/3gpp",
-        "video/mp4",
-        "video/ogg",
-        "video/webm",
-        "audio/mp3",
-        "audio/mp4",
-        "audio/mpeg",
-        "audio/ogg",
-        "audio/webm",
-        "audio/x-wav",
-        "audio/wav"
+        "application/vnd.ekstep.content-collection"
       ]
     },
     "osId": {
-      "type": "string",
-      "enum": [
-        "org.ekstep.quiz.app"
-      ],
-      "default": "org.ekstep.quiz.app"
+        "type": "string",
+        "default": "org.ekstep.launcher"
     },
     "contentEncoding": {
       "type": "string",
@@ -183,7 +148,7 @@
           "Administrator"
         ]
       },
-      "default": ["Learner"]
+      "default": ["Student"]
     },
     "posterImage": {
       "type": "string",
@@ -196,7 +161,10 @@
       "type": "object"
     },
     "contentCredits": {
-      "type": "object"
+      "type": "array",
+      "items": {
+          "type": "object"
+      }
     },
     "appIcon": {
       "type": "string",
@@ -440,12 +408,14 @@
         "ExplanationResource",
         "ExperientialResource",
         "eTextBook",
-        "ClassroomTeachingVideo",
+        "OnboardingResource",
         "ExplanationVideo",
+        "ClassroomTeachingVideo",
         "ExplanationReadingMaterial",
         "LearningActivity",
         "PreviousBoardExamPapers",
-        "LessonPlanResource"
+        "LessonPlanResource",
+        "TVLesson"
       ]
     },
     "resourceType": {
@@ -947,7 +917,8 @@
       "type": "array"
     },
     "version": {
-      "type": "number"
+      "type": "number",
+      "default": 2
     },
     "qrCodeProcessId": {
       "type": "string"
@@ -1033,6 +1004,120 @@
     },
     "chapterCountForContribution": {
       "type": "number"
+    },
+    "licenseterms" : {
+      "type": "string"
+    },
+    "copyrightYear" : {
+      "type": "number"
+    },
+    "monitorable": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "progress-report",
+          "score-report"
+        ]
+      }
+    },
+    "userConsent": {
+      "type": "string",
+      "enum": [
+        "Yes",
+        "No"
+      ]
+    },
+    "trackable": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "string",
+          "enum": ["Yes","No"],
+          "default": "No"
+        },
+        "autoBatch": {
+          "type": "string",
+          "enum": ["Yes","No"],
+          "default": "No"
+        }
+      },
+      "default": {
+        "enabled": "No",
+        "autoBatch": "No"
+      },
+      "additionalProperties": false
+    },
+    "credentials": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "string",
+          "enum": ["Yes","No"],
+          "default": "No"
+        }
+      },
+      "default": {
+        "enabled": "No"
+      },
+      "additionalProperties": false
+    },
+    "primaryCategory": {
+      "type": "string",
+      "enum": [
+        "Explanation Content",
+        "Learning Resource",
+        "Course",
+        "Practice Question Set",
+        "eTextbook",
+        "Teacher Resource",
+        "Course Assessment",
+        "Digital Textbook",
+        "Content Playlist",
+        "Template",
+        "Asset",
+        "Plugin",
+        "Lesson Plan Unit",
+        "Course Unit",
+        "Textbook Unit"
+      ]
+    },
+    "additionalCategories": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Textbook",
+          "Lesson Plan"
+        ]
+      }
+    },
+    "prevStatus": {
+      "type": "string"
+    },
+    "batches": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "year": {
+      "type": "string"
+    },
+    "plugins": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "showNotification": {
+      "type": "boolean"
+    },
+    "collectionId": {
+       "type": "string"
+    },
+    "courseId": {
+      "type": "string"
     }
   }
 }
